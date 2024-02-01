@@ -28,11 +28,36 @@ const HEALTH_DATA_KEYS = [
 
 webServer.get("/company", async (req, res) => {
   // writing code here
+  const company = await databaseClient
+    .db()
+    .collection("company")
+    .find()
+    .toArray();
+  res.json(company);
 });
 
 webServer.post("/company", async (req, res) => {
   // writing code here
+  const company = req.body;
+  await databaseClient.db().collection("company").insertOne(company);
+  res.send("Create Company Success");
 });
+
+webServer.post("/company/employee", async (req, res) => {
+  // writing code here
+  const { company_id, user_id } = req.body;
+  // const companyId = body.company_id;
+  // const userId = body.user_id;
+  await databaseClient
+    .db()
+    .collection("company")
+    .updateOne(
+      { _id: new ObjectId(company_id) },
+      { $push: { employees: new ObjectId(user_id) } }
+    );
+  res.send("Add employee to company");
+});
+
 // initilize web server
 const currentServer = webServer.listen(PORT, HOSTNAME, () => {
   console.log(
