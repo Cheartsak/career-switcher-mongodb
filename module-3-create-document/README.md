@@ -2,4 +2,5 @@
 
 <h4>This module will cover</h4>
 
+- How to create document.
 - insert() operation with single and multiple documents.
