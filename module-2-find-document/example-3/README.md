@@ -1,4 +1,4 @@
-<h2>Module 2: Find Document - Example _</h2>
+<h2>Module 2: Find Document - Example 3</h2>
 
 <h4>Prerequisite</h4>
 <li>MongoDB Compass</li>
