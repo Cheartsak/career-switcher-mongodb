@@ -12,8 +12,21 @@ const data = [
 ];
 
 // profit only
+const profit = data.filter((item) => {
+  if (item.balance >= 0) {
+    return item;
+  }
+});
+// console.log(profit);
 
 // loss only
+const loss = data.filter((item) => {
+  if (item.balance < 0) {
+    return item;
+  }
+});
+
+console.log(loss);
 
 // max profit
 

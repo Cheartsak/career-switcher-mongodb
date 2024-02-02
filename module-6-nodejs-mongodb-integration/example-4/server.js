@@ -28,7 +28,7 @@ webServer.get("/members", async (req, res) => {
   const members = await databaseClient
     .db()
     .collection("members")
-    .find()
+    .find({}, { projection: { username: 0, password: 0 } })
     .toArray();
   res.json(members);
 });
