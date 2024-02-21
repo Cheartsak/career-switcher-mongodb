@@ -15,11 +15,7 @@ webServer.use(cors());
 
 // server routes
 webServer.get("/", async (req, res) => {
-  const data = await databaseClient
-    .db()
-    .collection("health")
-    .find({}, { projection: { _id: 1, average_heart_rate: 1 } })
-    .toArray();
+  const data = await databaseClient.db().collection("health").find({});
   res.json(data);
 });
 

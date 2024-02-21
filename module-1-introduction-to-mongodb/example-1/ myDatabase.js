@@ -11,10 +11,24 @@ const data = [
   { company: 10, profit: 5000, loss: 8000, balance: -3000 },
 ];
 
-// profit only
+// Below cases are implementation from scratch to simulate database operation.
+
+// find profit only
+const profit = data.filter((item) => {
+  if (item.balance >= 0) {
+    return item;
+  }
+});
 
 // loss only
+const loss = data.filter((item) => {
+  if (item.balance < 0) {
+    return item;
+  }
+});
 
 // max profit
+// Can you think of this?
 
 // top 3 companies with max profit
+// Can you think of this?

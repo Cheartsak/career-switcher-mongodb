@@ -17,14 +17,13 @@ webServer.use(cors());
 webServer.use(express.json());
 
 // HEALTH DATA
-const HEALTH_DATA_KEYS = [
-  "duration",
-  "distance",
-  "average_heart_rate",
-  "user_id",
-];
+const COMPANY_KEY = ["name", "taxId"];
 
 // server routes
+
+webServer.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 webServer.get("/company", async (req, res) => {
   // writing code here
