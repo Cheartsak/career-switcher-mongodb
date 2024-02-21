@@ -35,7 +35,8 @@ webServer.get("/health", async (req, res) => {
     .collection("health-history")
     .find({})
     .toArray();
-  res.json(healthData);
+  res.json({ count: healthData.length, healthData });
+  // console.log(healthData);
 });
 
 webServer.post("/health", async (req, res) => {

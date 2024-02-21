@@ -26,46 +26,34 @@ webServer.get("/", (req, res) => {
 });
 
 webServer.get("/company", async (req, res) => {
-  const data = await databaseClient
+  // writing code here
+  const company = await databaseClient
     .db()
     .collection("company")
-    .find({})
+    .find()
     .toArray();
-  res.json(data);
+  res.json(company);
 });
 
 webServer.post("/company", async (req, res) => {
-  const body = req.body;
-
-  // check missing fields here
-
-  // create data
-  const data = {
-    ...body,
-    employees: [],
-  };
-
-  await databaseClient.db().collection("company").insertOne(data);
-  res.send("Create Company Successfully");
+  // writing code here
+  const company = req.body;
+  await databaseClient.db().collection("company").insertOne(company);
+  res.send("Create Company Success");
 });
 
 webServer.post("/company/employee", async (req, res) => {
-  const body = req.body;
-
-  // check missing fields here
-
-  // create data
-  const companyId = body.company_id;
-  const userId = body.user_id;
-
+  // writing code here
+  const { company_id, user_id } = req.body;
+  // const companyId = body.company_id;
+  // const userId = body.user_id;
   await databaseClient
     .db()
     .collection("company")
     .updateOne(
-      { _id: new ObjectId(companyId) },
-      { $push: { employees: new ObjectId(userId) } }
+      { _id: new ObjectId(company_id) },
+      { $push: { employees: new ObjectId(user_id) } }
     );
-
   res.send("Add employee to company");
 });
 

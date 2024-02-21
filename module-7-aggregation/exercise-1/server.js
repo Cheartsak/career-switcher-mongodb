@@ -14,7 +14,22 @@ webServer.use(cors());
 // server routes
 webServer.get("/", async (req, res) => {
   // code here
-
+  const data = await databaseClient
+    .db()
+    .collection("health-history")
+    .aggregate([
+      { $match: { user_id: 1 } },
+      {
+        $group: {
+          _id: "$user_id",
+          avg_heart_rate: { $avg: "$average_heart_rate" },
+          total_distance: { $sum: "$distance" },
+          total_duration: { $sum: "$duration" },
+        },
+      },
+    ])
+    .toArray();
+  console.log(data);
   res.json(data);
 });
 
